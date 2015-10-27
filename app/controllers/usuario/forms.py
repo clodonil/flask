@@ -14,6 +14,6 @@ class UserForm(Form):
      password   = StringField('Password', validators=[DataRequired()])
      password   = PasswordField('New Password', [validators.Required(), validators.EqualTo('confirm', message='Passwords must match')])
      confirm    = PasswordField('Repeat Password')
-     filial     = SelectField('Filial', choices=opcao)
+     filial_id = SelectField('Filiais', choices=[(h.id,h.nome) for h in Filial.query.all()],coerce=int)
      perfil     = SelectField('Perfil', choices=[("Operador","Operador"),("Gerente","Gerente")])
 

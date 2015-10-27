@@ -6,14 +6,14 @@ from wtforms.ext.django.fields import QuerySetSelectField
 
 
 class UserForm(Form):
-     opcao=""
+     opcao=[]
      for f in FILIAL:
-         opcao+='(f,f)' 
+         opcao.append((f,f)) 
      nome       = StringField('Nome', validators=[DataRequired()])
      email      = StringField('E-Mail', validators=[DataRequired()])
      password   = StringField('Password', validators=[DataRequired()])
      password   = PasswordField('New Password', [validators.Required(), validators.EqualTo('confirm', message='Passwords must match')])
      confirm    = PasswordField('Repeat Password')
-     filial     = SelectField('Filial', choices=[opcao])
+     filial     = SelectField('Filial', choices=opcao)
      perfil     = SelectField('Perfil', choices=[("Operador","Operador"),("Gerente","Gerente")])
 
