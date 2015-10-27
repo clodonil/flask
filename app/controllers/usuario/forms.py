@@ -3,6 +3,7 @@ from config import FILIAL
 from wtforms import StringField, BooleanField, FloatField, IntegerField, DateField,TextAreaField, SelectField, FileField, PasswordField,validators
 from wtforms.validators import DataRequired, EqualTo
 from wtforms.ext.django.fields import QuerySetSelectField
+from app.model import Filial
 
 
 class UserForm(Form):
@@ -14,6 +15,6 @@ class UserForm(Form):
      password   = StringField('Password', validators=[DataRequired()])
      password   = PasswordField('New Password', [validators.Required(), validators.EqualTo('confirm', message='Passwords must match')])
      confirm    = PasswordField('Repeat Password')
-     filial_id = SelectField('Filiais', choices=[(h.id,h.nome) for h in Filial.query.all()],coerce=int)
+     filial_id  = SelectField('Filiais', choices=[(h.id,h.nome) for h in Filial.query.all()],coerce=int)
      perfil     = SelectField('Perfil', choices=[("Operador","Operador"),("Gerente","Gerente")])
 

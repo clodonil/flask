@@ -30,14 +30,14 @@ login_manager.init_app(app)
 # Modulos
 from app import model
 from app.controllers.auth.controllers import auth
-#from app.controllers.filial.controllers import filial
+from app.controllers.filial.controllers import filial
 from app.controllers.usuario.controllers import usuario
 from app.controllers.receitas.controllers import receitas
 from app.controllers.despesas.controllers import despesas
 
 
 app.register_blueprint(auth, url_prefix='/auth')
-#app.register_blueprint(filial, url_prefix='/filial')
+app.register_blueprint(filial, url_prefix='/filial')
 app.register_blueprint(usuario, url_prefix='/usuario')
 app.register_blueprint(receitas, url_prefix='/receitas')
 app.register_blueprint(despesas, url_prefix='/despesas')

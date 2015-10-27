@@ -17,7 +17,7 @@ class Usuario(db.Model,UserMixin):
       email         = db.Column(db.String(100), unique=True, index=True)      
       password      = db.Column(db.String(100), index=True)      
       perfil        = db.Column(db.String(100), index=True)
-      filial        = db.Column(db.String(100), index=True)
+      filial_id    = db.Column(db.Integer, db.ForeignKey('filial.id'))
       date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
       date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
                                            onupdate=db.func.current_timestamp())
@@ -27,12 +27,12 @@ class Usuario(db.Model,UserMixin):
           return '<Usuario %r>' %(self.nome)
 
 
-      def __init__(self,nome, email, password, perfil, filial):
+      def __init__(self,nome, email, password, perfil, filial_id):
           self.nome       = nome
           self.email      = email.lower()         
           self.set_password(password)
           self.perfil     = perfil
-          self.filial     = filial
+          self.filial_id     = filial_id
 
       
       def add(self,user):
@@ -59,7 +59,39 @@ class Usuario(db.Model,UserMixin):
       def check_password(self, password):
           return check_password_hash(self.password, password)
 
+class Filial(db.Model):
+      id            = db.Column(db.Integer, primary_key=True)
+      nome          = db.Column(db.String(100), index=True)
+      Usuario       = db.relationship('Usuario', backref='filial', lazy='dynamic')
+      date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
+      date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
+                                           onupdate=db.func.current_timestamp())
 
+
+      def __repr__(self):
+          return '<Filial %r>' %(self.nome)
+
+
+      def __init__(self,nome):
+          self.nome  = nome
+
+
+      def get_id(self):
+          return str(self.id)
+
+      def add(self,filial):
+          db.session.add(filial)
+          create_dir(filial.nome)
+          return session_commit()
+
+      def update(self,src,dst):
+          edit_dir(src,dst)
+          return session_commit()
+
+      def delete(self,nome):
+          db.session.delete(nome)
+          delete_dir(emp.nome)
+          return session_commit()
 
 
 class Despesas(db.Model):
