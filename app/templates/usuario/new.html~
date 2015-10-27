@@ -1,0 +1,66 @@
+<!-- extend from base layout -->
+
+<!-- extend from base layout -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="form-horizontal">
+    <form action="" method="post" name="new">
+          {{form.hidden_tag() }}
+      <p>
+           {% for error in form.errors %}
+                   <span style="color: red;">[{{ error }}] </span>
+                {%  endfor%} <br>
+       </p>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Nome</label>
+					  <div class="controls">
+                     {{ form.nome }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Email</label>
+					  <div class="controls">
+                     {{ form.email }}
+					  </div>
+              </div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Password</label>
+					  <div class="controls">
+                     {{ form.password }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Confirmação Password</label>
+					  <div class="controls">
+                     {{ form.confirm }}
+					  </div>
+					</div>
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Perfil</label>
+					  <div class="controls">
+                     {{form.perfil }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Filial</label>
+					  <div class="controls">
+                     {{form.filial }}
+					  </div>
+					</div>
+
+
+               <div class="form-actions">
+	  				<input type="submit" value="Salvar" class="btn btn-info">   
+              </div>
+          <p><input type="submit" value="Salvar"></p>
+      </form>
+</div>
+{% endblock %}
+

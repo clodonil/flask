@@ -1,0 +1,17 @@
+#!env/bin/python
+from app import db
+from app.model import Categoria, Movimentacao, Docs, Usuario, Empresa
+import datetime
+
+cat = Categoria("Lazer", "Lazer com a familia", 0)
+db.session.add(cat)
+db.session.commit()
+
+#mov = Movimentacao("Luz","conta do mes",100, datetime.date(2015, 10, 12), 1, 1)
+#mov.add(mov)
+
+emp = Empresa('Trigos','trigo@localhost')
+emp.add(emp)
+
+user = Usuario('admin','admin','admin@localhost','x',1)
+user.add(user)

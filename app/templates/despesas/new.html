@@ -1,0 +1,77 @@
+<!-- extend from base layout -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="form-horizontal">
+    <form action="" method="post" name="new">
+          {{form.hidden_tag() }}
+      <p>
+           {% for error in form.errors %}
+                   <span style="color: red;">[{{ error }}] </span>
+                {%  endfor%} <br>
+       </p>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Data</label>
+					  <div class="controls">
+                     {{ form.data }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Fornecedor</label>
+					  <div class="controls">
+                     {{ form.fornecedor }}
+					  </div>
+              </div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Finalidade</label>
+					  <div class="controls">
+                     {{ form.finalidade }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Observação</label>
+					  <div class="controls">
+                     {{ form.obs }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Dinheiro</label>
+					  <div class="controls">
+                     {{ form.dinheiro }}
+					  </div>
+					</div>
+
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Cheque</label>
+					  <div class="controls">
+                     {{ form.cheque }}
+					  </div>
+					</div>
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Cartão</label>
+					  <div class="controls">
+                     {{ form.cartao }}
+					  </div>
+					</div>
+               <div class="control-group">
+					   <label class="control-label" for="form-field-1">Boleto</label>
+					  <div class="controls">
+                     {{ form.boleto }}
+					  </div>
+					</div>
+
+               <div class="form-actions">
+	  				<input type="submit" value="Salvar" class="btn btn-info">   
+              </div>
+          <p><input type="submit" value="Salvar"></p>
+      </form>
+</div>
+{% endblock %}
+
+
